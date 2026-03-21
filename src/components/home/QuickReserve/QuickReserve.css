@@ -1,0 +1,106 @@
+.quick-reserve {
+  margin-top: 0;
+}
+
+.quick-reserve__card {
+  border-radius: 20px;
+  border: 1px solid rgba(31, 48, 40, 0.16);
+  background: rgba(236, 232, 220, 0.88);
+  box-shadow: 0 10px 30px rgba(33, 50, 43, 0.12);
+  padding: clamp(1.4rem, 2.4vw, 2rem);
+}
+
+.quick-reserve__label {
+  margin: 0;
+  color: var(--color-accent);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.quick-reserve__title {
+  margin: 0.36rem 0 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.7rem, 4vw, 2.4rem);
+  line-height: 1.02;
+  color: var(--color-text);
+}
+
+.quick-reserve__description {
+  margin: 0.9rem 0 0;
+  max-width: 62ch;
+  color: var(--color-muted);
+}
+
+.quick-reserve__form {
+  margin-top: 1.35rem;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.9rem;
+}
+
+.quick-reserve__field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  font-size: 0.82rem;
+  color: var(--color-muted);
+}
+
+.quick-reserve__field input,
+.quick-reserve__field select {
+  width: 100%;
+  border: 1px solid rgba(31, 48, 40, 0.2);
+  border-radius: 12px;
+  padding: 0.68rem 0.8rem;
+  background: rgba(246, 245, 239, 0.92);
+  color: var(--color-text);
+  font: inherit;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.quick-reserve__field input:focus,
+.quick-reserve__field select:focus {
+  outline: none;
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px rgba(49, 112, 85, 0.16);
+}
+
+.quick-reserve__submit {
+  grid-column: 1 / -1;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  background: var(--color-accent);
+  color: var(--color-contrast);
+  padding: 0.75rem 1.25rem;
+  font-weight: 600;
+  font-size: 0.94rem;
+  cursor: pointer;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease;
+}
+
+.quick-reserve__submit:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 22px rgba(49, 112, 85, 0.25);
+  background: #2c654c;
+}
+
+.quick-reserve__feedback {
+  margin: 1rem 0 0;
+  color: var(--color-accent);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+@media (max-width: 900px) {
+  .quick-reserve__form {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 620px) {
+  .quick-reserve__form {
+    grid-template-columns: 1fr;
+  }
+}
