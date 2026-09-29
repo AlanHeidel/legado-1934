@@ -1,0 +1,40 @@
+.burger-button {
+  all: unset;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  cursor: pointer;
+  width: 50px;
+  height: 44px;
+  padding-block: 2px;
+  justify-content: space-between;
+  color: var(--color-cream);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.burger-button span {
+  width: 45px;
+  height: 7px;
+  flex-shrink: 0;
+  background: currentColor;
+  border-radius: 100px;
+  display: inline-block;
+  transform-origin: center;
+  transition: transform 300ms ease, opacity 300ms ease;
+}
+
+.burger-button.open .top { transform: translateY(16.5px) rotate(45deg); }
+.burger-button.open .bottom { transform: translateY(-16.5px) rotate(-45deg); }
+.burger-button.open .middle { transform: translateX(-20px); opacity: 0; }
+
+.burger-button:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 8px;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .burger-button:not(.open):hover .middle { transform: translateX(5px); }
+  .burger-button.open:hover .top { transform: translateY(16.5px) rotate(135deg); }
+  .burger-button.open:hover .bottom { transform: translateY(-16.5px) rotate(45deg); }
+}

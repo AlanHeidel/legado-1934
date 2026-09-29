@@ -1,0 +1,153 @@
+.reveal {
+  position: relative;
+
+  width: 100%;
+  height: 100vh;
+
+  overflow: hidden;
+
+  background: #e2e0d2;
+}
+
+.reveal__stage {
+  position: relative;
+
+  width: 100%;
+  height: 100%;
+}
+
+
+/* =========================
+   FONDO
+   ========================= */
+
+.reveal__image {
+  position: absolute;
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+
+  -webkit-mask-position: center;
+  mask-position: center;
+
+  -webkit-mask-mode: alpha;
+  mask-mode: alpha;
+
+  will-change:
+    -webkit-mask-size,
+    mask-size,
+    -webkit-mask-position,
+    mask-position;
+}
+
+
+/* =========================
+   MERCH
+   ========================= */
+
+.reveal__merch {
+  position: absolute;
+  inset: 0;
+
+  overflow: hidden;
+
+  pointer-events: none;
+}
+
+
+/* =========================
+   TITULO REMERAS
+   ========================= */
+
+.reveal__title {
+  position: absolute;
+
+  top: 5%;
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  width: 92%;
+
+  margin: 0;
+
+  color: #e2e0d2;
+
+  font-family: 'Archivo Black', sans-serif;
+
+  font-size: clamp(6rem, 18vw, 18rem);
+  font-weight: 900;
+
+  line-height: 0.8;
+
+  text-align: center;
+
+  letter-spacing: -0.07em;
+
+  white-space: nowrap;
+
+  z-index: 1;
+
+  will-change: clip-path;
+}
+
+
+/* =========================
+   REMERAS
+   ========================= */
+
+.reveal__shirts {
+  position: absolute;
+  inset: 0;
+
+  z-index: 2;
+}
+
+.reveal__shirt {
+  position: absolute;
+
+  left: 50%;
+  top: 53%;
+
+  width: min(42vw, 620px);
+  height: auto;
+
+  transform: translate(-50%, -50%);
+
+  object-fit: contain;
+
+  will-change:
+    transform,
+    opacity;
+
+  filter:
+    drop-shadow(0 22px 28px rgba(0, 0, 0, 0.18));
+}
+
+
+/* Mobile */
+
+@media (max-width: 768px) {
+
+  .reveal__title {
+    top: 12%;
+
+    width: 96%;
+
+    font-size: 24vw;
+  }
+
+  .reveal__shirt {
+    width: min(78vw, 500px);
+
+    top: 55%;
+  }
+}

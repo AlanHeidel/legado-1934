@@ -1,0 +1,95 @@
+.site-header {
+  position: fixed;
+  top: clamp(24px, 3vw, 44px);
+  right: clamp(24px, 4vw, 72px);
+  z-index: var(--layer-header);
+  background: transparent;
+}
+
+/* Native modal top layer makes the page behind it inert, including keyboard focus. */
+.site-header--on-paper > .burger-button { color: var(--color-green-dark); }
+
+.site-menu {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  max-width: none;
+  height: 100%;
+  height: 100dvh;
+  max-height: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+  background: transparent;
+  color: var(--color-cream);
+  overscroll-behavior: none;
+}
+
+.site-menu::backdrop { background: transparent; }
+
+.site-menu__surface {
+  position: absolute;
+  inset: 0;
+  background: var(--color-green-dark);
+  pointer-events: none;
+}
+
+.site-menu__content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(48px, 8dvh, 96px);
+  height: 100%;
+  padding: clamp(24px, 3vw, 44px) clamp(24px, 4vw, 72px) 32px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.site-menu__close { align-self: flex-end; flex-shrink: 0; }
+
+.site-menu__nav {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: clamp(12px, 2dvh, 28px);
+  padding: 10px;
+  margin: -10px;
+}
+
+.site-menu__row { padding: 10px; margin: -10px; overflow: hidden; }
+
+.site-menu__link {
+  display: block;
+  width: fit-content;
+  font-family: var(--font-display);
+  font-size: clamp(36px, 7vw, 90px);
+  line-height: 1.15;
+  letter-spacing: -0.065em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  text-decoration: none;
+}
+
+.site-menu__link::after {
+  display: block;
+  height: 3px;
+  background: currentColor;
+  content: '';
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 350ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+.site-menu__link:hover::after { transform: scaleX(1); }
+.site-menu__link:focus-visible { outline: 2px solid var(--color-cream); outline-offset: 6px; }
+
+@media (max-width: 767px) {
+  .site-menu__link { font-size: clamp(32px, 8vw, 64px); letter-spacing: -0.06em; }
+  .site-menu__content { gap: clamp(52px, 10dvh, 88px); }
+}
+
+@media (max-height: 500px) and (orientation: landscape) {
+  .site-menu__content { gap: 24px; }
+  .site-menu__nav { gap: 8px; }
+  .site-menu__link { font-size: clamp(30px, 10dvh, 48px); }
+}

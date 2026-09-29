@@ -1,17 +1,15 @@
-import './App.css'
-import { SiteFooter } from './components/layout/SiteFooter/SiteFooter.tsx'
-import { SiteHeader } from './components/layout/SiteHeader/SiteHeader.tsx'
-import { HomePage } from './pages/HomePage/HomePage.tsx'
+import { SiteHeader } from './components/layout/SiteHeader.tsx'
+import { HomePage } from './pages/HomePage.tsx'
 
 function App() {
   return (
-    <div className="app-shell">
+    <>
+      <a className="skip-link" href="#inicio">Ir al contenido</a>
       <SiteHeader />
-      <main className="app-main">
+      <main>
         <HomePage />
       </main>
-      <SiteFooter />
-    </div>
+    </>
   )
 }
 

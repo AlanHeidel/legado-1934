@@ -1,0 +1,143 @@
+.hero {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  height: 115vh;
+  overflow: clip;
+  border-bottom: clamp(16px, 4vw, 32px) solid var(--color-cream);
+  border-radius: 0 0 clamp(32px, 5vw, 80px) clamp(32px, 5vw, 80px);
+  background: var(--color-cream);
+}
+
+.hero__scene {
+  position: absolute;
+  inset: 0;
+  z-index: var(--layer-background);
+  pointer-events: none;
+}
+
+.hero__parallax {
+  position: absolute;
+  inset: 0 0 -100px;
+}
+
+.hero__background,
+.hero__overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.hero__overlay {
+  z-index: var(--layer-overlay);
+}
+
+.hero__content {
+  min-width: 0;
+  position: relative;
+  z-index: var(--layer-content);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(18px, 3dvh, 36px);
+  min-height: 100dvh;
+  padding: 72px 24px 72px;
+  margin-bottom: clamp(58px, 6vw, 96px);
+}
+
+.hero__identity {
+  max-width: 100%;
+  margin: 0;
+  line-height: 0;
+}
+
+.hero__logo {
+  display: block;
+  width: min(64vw, 810px);
+  max-width: 100%;
+  height: auto;
+  max-height: 58dvh;
+  object-fit: contain;
+  user-select: none;
+}
+
+.reserve-button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  min-height: 64px;
+  padding: 17px 28px;
+  border: 1px solid var(--color-orange);
+  border-radius: 4px;
+  background: var(--color-orange);
+  color: var(--color-cream);
+  box-shadow: 0 4px 0 var(--color-green-dark);
+  font-family: var(--font-body);
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1.2;
+  white-space: nowrap;
+  transition: transform 260ms cubic-bezier(0.22, 1, 0.36, 1), box-shadow 260ms ease;
+}
+
+.reserve-button__arrow {
+  width: 24px;
+  height: 24px;
+  transition: transform 260ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .reserve-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 7px 0 var(--color-green-dark);
+  }
+
+  .reserve-button:hover .reserve-button__arrow {
+    transform: translate(3px, -3px);
+  }
+}
+
+.reserve-button:active {
+  transform: translateY(3px);
+  box-shadow: 0 1px 0 var(--color-green-dark);
+}
+
+@media (max-width: 767px) {
+  .hero__content {
+    padding: 88px 20px 44px;
+    gap: 28px;
+  }
+
+  .hero__logo {
+    width: min(94vw, 620px);
+    max-height: 55dvh;
+  }
+
+  .reserve-button {
+    min-height: 60px;
+    padding: 15px 24px;
+    gap: 22px;
+  }
+}
+
+@media (max-height: 500px) and (orientation: landscape) {
+  .hero__content {
+    padding-block: 84px 24px;
+    gap: 12px;
+  }
+
+  .hero__logo {
+    max-height: 43dvh;
+  }
+
+  .reserve-button {
+    min-height: 48px;
+    padding-block: 10px;
+    font-size: 22px;
+  }
+}

@@ -1,37 +1,131 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700&display=swap');
+@import '@fontsource/barlow-condensed/latin-400.css';
+@import '@fontsource/barlow-condensed/latin-600.css';
+@import '@fontsource/barlow-condensed/latin-700.css';
+@import '@fontsource/archivo-black/latin-400.css';
+@import '@fontsource/cormorant-garamond/latin-700.css';
+@import '@fontsource/cormorant-garamond/latin-700-italic.css';
 
 :root {
-  --color-bg: #d2d0c3;
-  --color-accent: #317055;
-  --color-text: #1f3028;
-  --color-muted: #4b5f56;
-  --color-surface: #ece8dc;
-  --color-contrast: #f6f5ef;
-  --color-border: rgba(31, 48, 40, 0.2);
-
-  --font-base: 'Manrope', 'Segoe UI', sans-serif;
-  --font-display: 'Cormorant Garamond', serif;
+  color-scheme: light;
+  --color-green: #287253;
+  --color-green-dark: #123f38;
+  --color-green-secondary: #3e7659;
+  --color-cream: #e2e0d2;
+  --color-beige: #c9c5b4;
+  --color-blue: #397a92;
+  --color-blue-dark: #123f58;
+  --color-orange: #cc5426;
+  --font-body: 'Barlow Condensed', 'Arial Narrow', sans-serif;
+  --font-display: 'Archivo Black', 'Arial Black', sans-serif;
+  --font-editorial: 'Cormorant Garamond', Georgia, serif;
+  /* Layers: photo, supplied paint overlay, content, header, keyboard skip link. */
+  --layer-background: 0;
+  --layer-overlay: 1;
+  --layer-content: 2;
+  --layer-header: 3;
+  --layer-skip: 4;
+  font-family: var(--font-body);
+  font-synthesis: none;
+  color: var(--color-green-dark);
+  background: var(--color-cream);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-*,
-*::before,
-*::after {
+* {
   box-sizing: border-box;
 }
 
-html,
-body,
-#root {
-  min-height: 100vh;
-}
-
 body {
+  min-width: 320px;
   margin: 0;
-  font-family: var(--font-base);
-  color: var(--color-text);
-  background: var(--color-bg);
 }
 
 a {
   color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+::selection {
+  color: var(--color-cream);
+  background: var(--color-green);
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-beige);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-orange);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-green-dark);
+}
+
+:focus-visible {
+  outline: 3px solid var(--color-blue-dark);
+  outline-offset: 6px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  z-index: var(--layer-skip);
+  padding: 12px 20px;
+  background: var(--color-cream);
+  font-size: 20px;
+  font-weight: 600;
+  transform: translateY(-200%);
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+
+  .reserve-button:hover,
+  .reserve-button:active,
+  .reserve-button:hover .reserve-button__arrow {
+    transform: none;
+  }
 }
