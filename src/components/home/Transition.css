@@ -2,7 +2,13 @@
   position: relative;
 
   width: 100%;
+
+  /*
+   * 100vh como fallback.
+   * svh da una altura más estable en navegadores móviles.
+   */
   height: 100vh;
+  height: 100svh;
 
   overflow: hidden;
 
@@ -109,18 +115,62 @@
   inset: 0;
 
   z-index: 2;
+
+  /*
+   * Necesario para que las remeras puedan
+   * entrar/salir horizontalmente sin generar
+   * scroll lateral.
+   */
+  overflow: hidden;
 }
 
-.reveal__shirt {
+
+/*
+ * NUEVO:
+ *
+ * Este elemento se encarga EXCLUSIVAMENTE
+ * de posicionar y centrar cada remera.
+ *
+ * GSAP nunca transforma este wrapper.
+ */
+.reveal__shirt-slot {
   position: absolute;
 
   left: 50%;
   top: 53%;
 
-  width: min(42vw, 620px);
-  height: auto;
-
+  /*
+   * El centrado queda aislado de GSAP.
+   */
   transform: translate(-50%, -50%);
+
+  width: min(42vw, 620px);
+
+  /*
+   * No intercepta eventos y las tres cards
+   * quedan exactamente superpuestas.
+   */
+  pointer-events: none;
+}
+
+
+/*
+ * GSAP transforma solamente esta imagen.
+ *
+ * Ya NO tiene:
+ *
+ * position: absolute;
+ * left: 50%;
+ * top: 53%;
+ * transform: translate(-50%, -50%);
+ *
+ * porque todo eso vive en el wrapper.
+ */
+.reveal__shirt {
+  display: block;
+
+  width: 100%;
+  height: auto;
 
   object-fit: contain;
 
@@ -133,7 +183,9 @@
 }
 
 
-/* Mobile */
+/* =========================
+   MOBILE
+   ========================= */
 
 @media (max-width: 768px) {
 
@@ -145,7 +197,11 @@
     font-size: 24vw;
   }
 
-  .reveal__shirt {
+  /*
+   * Ahora modificamos el wrapper,
+   * NO la imagen.
+   */
+  .reveal__shirt-slot {
     width: min(78vw, 500px);
 
     top: 55%;

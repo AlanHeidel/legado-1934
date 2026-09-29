@@ -71,7 +71,13 @@ export function Transition() {
         clipPath: 'inset(0 100% 0 0)',
       })
 
-      // Las 3 remeras empiezan a la derecha
+      /*
+       * Las 3 remeras empiezan hacia la derecha.
+       *
+       * IMPORTANTE:
+       * GSAP ahora transforma únicamente las <img>.
+       * El centrado lo hacen sus wrappers mediante CSS.
+       */
       gsap.set([shirt1, shirt2, shirt3], {
         x: () => window.innerWidth * 0.85,
         opacity: 0,
@@ -98,7 +104,7 @@ export function Transition() {
       const SHIRT_1_IN = 500
       const SHIRT_1_HOLD = 450
 
-      // Transiciones
+      // Transiciones entre remeras
       const SHIRT_SWAP = 600
 
       // Pausas
@@ -253,9 +259,7 @@ export function Transition() {
         '<',
       )
 
-      /*
-       * Remera 2 queda quieta.
-       */
+      // Remera 2 quieta
       timeline.to({}, {
         duration: SHIRT_2_HOLD,
       })
@@ -360,26 +364,33 @@ export function Transition() {
 
           <div className="reveal__shirts">
 
-            <img
-              ref={shirt1Ref}
-              src={remera1}
-              className="reveal__shirt"
-              alt="Remera Legado 1934"
-            />
+            {/* Wrapper encargado del centrado */}
+            <div className="reveal__shirt-slot">
+              <img
+                ref={shirt1Ref}
+                src={remera1}
+                className="reveal__shirt"
+                alt="Remera Legado 1934"
+              />
+            </div>
 
-            <img
-              ref={shirt2Ref}
-              src={remera2}
-              className="reveal__shirt"
-              alt="Remera Legado 1934"
-            />
+            <div className="reveal__shirt-slot">
+              <img
+                ref={shirt2Ref}
+                src={remera2}
+                className="reveal__shirt"
+                alt="Remera Legado 1934"
+              />
+            </div>
 
-            <img
-              ref={shirt3Ref}
-              src={remera3}
-              className="reveal__shirt"
-              alt="Remera Legado 1934"
-            />
+            <div className="reveal__shirt-slot">
+              <img
+                ref={shirt3Ref}
+                src={remera3}
+                className="reveal__shirt"
+                alt="Remera Legado 1934"
+              />
+            </div>
 
           </div>
         </div>
