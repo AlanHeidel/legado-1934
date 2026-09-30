@@ -5,7 +5,7 @@ import './Location.css'
 
 const address = import.meta.env.VITE_CLUB_ADDRESS?.trim() || 'Avenida Malarín 2260, San Salvador, Entre Ríos, Argentina'
 const hours = import.meta.env.VITE_CLUB_HOURS?.trim() || ''
-const apiKey = import.meta.env.VITE_GOOGLE_MAPS_EMBED_API_KEY?.trim() || ''
+const apiKey = import.meta.env.GOOGLE_MAPS_EMBED_API_KEY?.trim() || ''
 const mapQuery = import.meta.env.VITE_GOOGLE_MAPS_QUERY?.trim() || address
 const contactUrl = `https://wa.me/${RESERVATION_PHONE}?text=${encodeURIComponent('¡Hola! Quiero consultar por la ubicación y los horarios de Legado 1934.')}`
 const mapUrl = mapQuery
