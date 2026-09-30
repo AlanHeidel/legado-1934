@@ -6,7 +6,7 @@ import './FinalCta.css'
 export function FinalCta() {
   return (
     <section className="final-cta" aria-labelledby="final-cta-title">
-      <img className="final-cta__divider" src={divider} alt="" aria-hidden="true" width="1916" height="283" />
+      <img className="final-cta__divider" src={divider} alt="" aria-hidden="true" width="1716" height="283" />
       <h2 id="final-cta-title">¿Armamos partido?</h2>
       <a className="reserve-button" href={RESERVATION_URL} target="_blank" rel="noopener noreferrer">
         <span>Reservar cancha</span>
