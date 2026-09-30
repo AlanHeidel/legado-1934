@@ -59,13 +59,24 @@ export function SiteHeader() {
     const dialog = dialogRef.current
     const header = headerRef.current
     const about = document.querySelector('#nosotros')
-    if (header && about) {
+    const footer = document.querySelector('.site-footer')
+    if (header && about && footer) {
+      // One rule owns the color; independent section triggers must not compete.
+      const updateHeaderColor = () => {
+        const headerBounds = header.getBoundingClientRect()
+        const buttonCenter = headerBounds.top + headerBounds.height / 2
+        const pastHero = about.getBoundingClientRect().top <= buttonCenter
+        // The short footer cannot reach the fixed button, so switch on entry.
+        const footerVisible = footer.getBoundingClientRect().top < window.innerHeight
+        header.classList.toggle('site-header--on-paper', pastHero && !footerVisible)
+      }
       ScrollTrigger.create({
-        trigger: about,
-        start: () => `top ${header.getBoundingClientRect().bottom}px`,
+        start: 0,
         end: 'max',
-        toggleClass: { targets: header, className: 'site-header--on-paper' },
+        onUpdate: updateHeaderColor,
+        onRefresh: updateHeaderColor,
       })
+      updateHeaderColor()
     }
     const timeline = gsap.timeline({ paused: true, onReverseComplete: finishClose })
       .fromTo('.site-menu__surface',
@@ -158,16 +169,9 @@ export function SiteHeader() {
           />
           <nav className="site-menu__nav" aria-label="Navegación principal">
             <div className="site-menu__row">
-              <a className="site-menu__link" href="#inicio" aria-current="page"
+              <a className="site-menu__link" href="#inicio"
                 onClick={event => { event.preventDefault(); closeMenu('#inicio') }}>
                 INICIO
-              </a>
-            </div>
-            <div className="site-menu__row">
-              <a className="site-menu__link" href={RESERVATION_URL} target="_blank" rel="noopener noreferrer"
-                onClick={() => closeMenu()}>
-                RESERVAR
-                <span className="sr-only"> por WhatsApp (abre una pestaña nueva)</span>
               </a>
             </div>
             <div className="site-menu__row">
@@ -183,9 +187,15 @@ export function SiteHeader() {
               </a>
             </div>
             <div className="site-menu__row">
+              <a className="site-menu__link" href="#ubicacion"
+                onClick={event => { event.preventDefault(); closeMenu('#ubicacion') }}>
+                UBICACION
+              </a>
+            </div>
+            <div className="site-menu__row">
               <a className="site-menu__link" href={RESERVATION_URL} target="_blank" rel="noopener noreferrer"
                 onClick={() => closeMenu()}>
-                CONTACTO
+                RESERVAR
                 <span className="sr-only"> por WhatsApp (abre una pestaña nueva)</span>
               </a>
             </div>

@@ -7,7 +7,10 @@
 }
 
 /* Native modal top layer makes the page behind it inert, including keyboard focus. */
+.site-header > .burger-button { color: var(--color-cream); }
 .site-header--on-paper > .burger-button { color: var(--color-green-dark); }
+
+.site-header--on-footer > .burger-button { color: var(--color-cream); }
 
 .site-menu {
   position: fixed;

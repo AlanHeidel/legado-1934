@@ -1,0 +1,76 @@
+.visual-break {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  place-items: center;
+  min-height: max(320px, 50svh);
+  padding: 72px 24px;
+  overflow: hidden;
+  background: var(--color-cream);
+  color: var(--color-green-dark);
+}
+
+.visual-break__pitch {
+  position: absolute;
+  z-index: -1;
+  left: clamp(-260px, -15vw, -100px);
+  top: 50%;
+  width: clamp(520px, 65vw, 1100px);
+  aspect-ratio: 1672 / 941;
+  transform: translateY(-50%) rotate(-14deg);
+  background: var(--color-green);
+  -webkit-mask: url('../../assets/cancha.svg') center / contain no-repeat;
+  mask: url('../../assets/cancha.svg') center / contain no-repeat;
+  opacity: 0.12;
+  pointer-events: none;
+}
+
+.visual-break__title {
+  margin: 0;
+  max-width: 1100px;
+  font-family: var(--font-display);
+  font-size: clamp(28px, 4.6vw, 72px);
+  font-weight: 400;
+  line-height: 1.18;
+  text-align: center;
+  text-transform: uppercase;
+  text-wrap: balance;
+}
+
+.visual-break__line { display: block; }
+
+.visual-break__pencil {
+  position: relative;
+  display: inline-block;
+}
+
+.visual-break__pencil::before,
+.visual-break__pencil::after {
+  content: '';
+  position: absolute;
+  pointer-events: none;
+  background: var(--color-orange);
+  opacity: 0.85;
+  clip-path: polygon(0 55%, 9% 30%, 28% 12%, 53% 22%, 77% 5%, 96% 24%, 100% 48%, 97% 69%, 71% 62%, 44% 82%, 16% 71%);
+}
+
+.visual-break__pencil::after {
+  inset: auto -3% -10px;
+  height: 9px;
+  transform: rotate(-1deg);
+}
+
+.visual-break__pencil::before {
+  right: 8%;
+  bottom: -17px;
+  width: 57%;
+  height: 6px;
+  transform: rotate(1deg);
+  opacity: 0.65;
+}
+
+@media (max-width: 480px) {
+  .visual-break { padding-block: 64px; }
+  .visual-break__title { font-size: clamp(24px, 6.2vw, 30px); }
+  .visual-break__pitch { left: -290px; opacity: 0.09; }
+}

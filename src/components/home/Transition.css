@@ -135,24 +135,11 @@
  */
 .reveal__shirt-slot {
   position: absolute;
-
   left: 50%;
   top: 53%;
-
-  /*
-   * El centrado queda aislado de GSAP.
-   */
   transform: translate(-50%, -50%);
-
-  width: min(42vw, 620px);
-
-  /*
-   * No intercepta eventos y las tres cards
-   * quedan exactamente superpuestas.
-   */
   pointer-events: none;
 }
-
 
 /*
  * GSAP transforma solamente esta imagen.
@@ -167,43 +154,260 @@
  * porque todo eso vive en el wrapper.
  */
 .reveal__shirt {
+  position: relative;
+
   display: block;
 
-  width: 100%;
-  height: auto;
+  height: min(65vh, 720px);
+  width: auto;
+
+  z-index: 2;
 
   object-fit: contain;
 
-  will-change:
-    transform,
-    opacity;
-
   filter:
-    drop-shadow(0 22px 28px rgba(0, 0, 0, 0.18));
+    drop-shadow(0 16px 18px rgba(0, 0, 0, 0.14));
+}
+
+.reveal__shirt-motion {
+  position: relative;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: auto;
+  height: auto;
+
+  will-change: transform, opacity;
+}
+
+.reveal__shirt-shadow {
+  position: absolute;
+
+  left: 50%;
+  bottom: -10%;
+
+  width: 80%;
+  height: 7%;
+
+  transform: translateX(-50%);
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(ellipse at center,
+      rgba(0, 0, 0, 0.48) 0%,
+      rgba(0, 0, 0, 0.28) 40%,
+      rgba(0, 0, 0, 0.08) 65%,
+      transparent 78%);
+
+  filter: blur(11px);
+
+  z-index: 1;
+
+  pointer-events: none;
 }
 
 
 /* =========================
-   MOBILE
+   PRODUCT INFO
    ========================= */
 
-@media (max-width: 768px) {
+.reveal__product-info {
+  position: absolute;
+  inset: auto 0 max(24px, env(safe-area-inset-bottom));
+  z-index: 3;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: center;
+  gap: 24px;
+  width: min(100%, 1440px);
+  margin-inline: auto;
+  padding-inline: clamp(24px, 5vw, 80px);
+  color: var(--color-cream);
+  visibility: hidden;
+  pointer-events: none;
+}
 
+.reveal__detail-label {
+  margin: 0 0 5px;
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.reveal__detail-value,
+.reveal__sizes {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: clamp(22px, 2vw, 28px);
+  font-weight: 600;
+  line-height: 1.15;
+}
+
+.reveal__detail-value span {
+  margin-inline: 6px;
+  opacity: 0.5;
+  font-weight: 400;
+}
+
+.reveal__product-detail--sizes {
+  justify-self: end;
+}
+
+.reveal__sizes {
+  display: flex;
+  gap: 18px;
+  padding: 0;
+  list-style: none;
+}
+
+.reveal__purchase {
+  position: relative;
+  justify-self: center;
+}
+
+.reveal__finale {
+  --pencil-progress: 0;
+  position: absolute;
+  bottom: calc(100% + 28px);
+  left: 50%;
+  width: min(86vw, 760px);
+  margin: 0;
+  transform: translateX(-50%) rotate(-3deg);
+  visibility: hidden;
+  color: var(--color-orange);
+  font-family: 'Caveat', cursive;
+  font-weight: 400;
+  font-size: clamp(38px, 6vw, 84px);
+  line-height: 1.12;
+  letter-spacing: -0.025em;
+  text-align: center;
+  pointer-events: none;
+}
+
+.reveal__finale-line {
+  display: block;
+  white-space: nowrap;
+  width: max-content;
+  margin-inline: auto;
+  clip-path: inset(0 100% 0 0);
+}
+
+.reveal__finale-line:last-child::after {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 5px;
+  margin: 4px auto 0;
+  background: currentColor;
+  opacity: 0.8;
+  clip-path: polygon(0 45%, 19% 20%, 47% 35%, 75% 10%, 100% 40%, 97% 65%, 68% 75%, 35% 62%, 3% 90%);
+  transform: scaleX(var(--pencil-progress));
+  transform-origin: left center;
+}
+
+.reveal__cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  min-height: 52px;
+  padding: 14px 26px;
+  border: 1px solid var(--color-cream);
+  border-radius: 2px;
+  background: var(--color-cream);
+  color: var(--color-green-dark);
+  font-family: var(--font-body);
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  pointer-events: auto;
+  transition: background 180ms ease, color 180ms ease, border-color 180ms ease;
+}
+
+.reveal__cta svg {
+  width: 22px;
+  height: 22px;
+}
+
+@media (hover: hover) {
+  .reveal__cta:hover {
+    background: var(--color-orange);
+    border-color: var(--color-orange);
+    color: var(--color-cream);
+  }
+}
+
+.reveal__cta:focus-visible {
+  outline: 2px solid var(--color-cream);
+  outline-offset: 5px;
+}
+
+/* Reserve space for the persistent product details on narrow screens. */
+@media (max-width: 768px) {
   .reveal__title {
     top: 12%;
-
     width: 96%;
-
     font-size: 24vw;
   }
 
-  /*
-   * Ahora modificamos el wrapper,
-   * NO la imagen.
-   */
   .reveal__shirt-slot {
     width: min(78vw, 500px);
-
-    top: 55%;
+    top: 48%;
   }
+
+  .reveal__shirt {
+    height: min(52svh, 110vw);
+  }
+
+  .reveal__product-info {
+    bottom: max(20px, env(safe-area-inset-bottom));
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 18px 16px;
+    padding-inline: 24px;
+  }
+
+  .reveal__detail-label {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+  }
+
+  .reveal__detail-value,
+  .reveal__sizes {
+    font-size: 22px;
+  }
+
+  .reveal__sizes { gap: 14px; }
+
+  .reveal__product-detail--sizes {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .reveal__purchase {
+    grid-column: 1 / -1;
+    grid-row: 2;
+  }
+
+  .reveal__cta {
+    min-height: 46px;
+    padding: 12px 24px;
+    font-size: 16px;
+  }
+}
+
+@media (max-height: 500px) and (max-width: 768px) {
+  .reveal__finale { font-size: 31px; bottom: calc(100% + 20px); }
+  .reveal__product-info { bottom: 12px; gap: 8px 16px; }
+  .reveal__shirt-slot { top: 43%; }
+  .reveal__shirt { height: 44svh; }
+  .reveal__title { top: 5%; font-size: 19vw; }
 }

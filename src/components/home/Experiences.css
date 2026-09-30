@@ -1,0 +1,152 @@
+.experiences {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  align-items: flex-end;
+  min-height: max(680px, 100svh);
+  overflow: hidden;
+  background: var(--color-green-dark);
+  font-family: var(--font-body);
+  color: var(--color-cream);
+}
+.experiences__photos, .experiences__photo, .experiences::after {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.experiences__photos { z-index: -2; }
+.experiences__photo {
+  object-fit: cover;
+  object-position: center;
+  opacity: 0;
+  transition: opacity 700ms ease;
+}
+.experiences__photo.is-active { opacity: 1; }
+.experiences::after {
+  content: '';
+  z-index: -1;
+  pointer-events: none;
+  background: linear-gradient(0deg, rgb(10 35 49 / 92%) 0%, rgb(10 35 49 / 48%) 33%, transparent 72%),
+    linear-gradient(90deg, rgb(10 35 49 / 25%), transparent 65%);
+}
+.experiences__layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+  align-items: end;
+  gap: 64px;
+  width: 100%;
+  max-width: 1800px;
+  margin-inline: auto;
+  padding: 160px clamp(24px, 4vw, 80px) 64px;
+}
+.experiences__copy { min-height: 350px; }
+.experiences__copy-inner { animation: experience-enter 450ms ease both; }
+.experiences h2 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(36px, 4.1vw, 68px);
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+}
+.experiences h2 span { display: block; }
+.experiences__copy p {
+  max-width: 350px;
+  min-height: 2.7em;
+  margin: 22px 0 26px;
+  font-size: 23px;
+  line-height: 1.35;
+  text-wrap: pretty;
+  color: var(--color-cream);
+}
+.experiences__navigation { width: 100%; max-width: 640px; justify-self: end; }
+.experiences__thumbnails { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+.experiences__thumbnail {
+  min-width: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--color-cream);
+  text-align: left;
+  cursor: pointer;
+}
+.experiences__preview {
+  position: relative;
+  isolation: isolate;
+  display: block;
+  overflow: hidden;
+  aspect-ratio: 200 / 132;
+  border-radius: 8px;
+  box-shadow: inset 0 0 0 2px rgb(226 224 210 / 55%);
+}
+.experiences__preview::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(transparent 35%, rgb(18 63 56 / 60%));
+}
+.experiences__preview img {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.experiences__preview-number { position: absolute; bottom: 10px; right: 14px; font-size: 24px; }
+.experiences__progress { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.experiences__progress rect {
+  fill: none;
+  stroke: var(--color-orange);
+  stroke-width: 3;
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+  vector-effect: non-scaling-stroke;
+}
+.experiences__label {
+  display: block;
+  margin: 12px 4px 0;
+  min-height: 42px;
+  font-size: clamp(15px, 1.3vw, 20px);
+  font-weight: 600;
+  line-height: 1.2;
+  text-transform: uppercase;
+  color: var(--color-beige);
+}
+.experiences__thumbnail.is-active .experiences__label { color: var(--color-cream); }
+.experiences__thumbnail.is-active .experiences__label::after {
+  content: '';
+  display: block;
+  width: 32px;
+  height: 2px;
+  margin-top: 10px;
+  background: var(--color-orange);
+}
+.experiences :focus-visible { outline: 2px solid var(--color-cream); outline-offset: 6px; }
+@keyframes experience-enter {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@media (max-width: 1023px) {
+  .experiences__layout { gap: 36px; grid-template-columns: 1fr; padding-bottom: 36px; padding-top: 240px; }
+  .experiences__copy { min-height: 0; }
+  .experiences__navigation { max-width: 560px; }
+  .experiences__label { font-size: 18px; }
+}
+@media (max-width: 639px) {
+  .experiences { min-height: max(780px, 100svh); }
+  .experiences__layout { padding: 230px 24px 28px; gap: 20px; }
+  .experiences h2 { font-size: clamp(30px, 8vw, 48px); }
+  .experiences__copy p { font-size: 21px; margin: 18px 0 22px; }
+  .experiences__thumbnails { gap: 10px; }
+  .experiences__label { font-size: 14px; margin-inline: 0; min-height: 56px; }
+  .experiences__preview-number { font-size: 20px; bottom: 6px; right: 8px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .experiences__photo { transition: none; }
+  .experiences__copy-inner { animation: none; }
+  .experiences__progress rect { stroke-dashoffset: 0 !important; }
+}
