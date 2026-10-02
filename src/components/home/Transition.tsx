@@ -70,13 +70,18 @@ export function Transition() {
        * ==========================================
        */
 
+      // On mobile, the clock reaches the viewport center through natural scroll,
+      // without the extra 58% → 50% movement when the pin starts.
+      const clockStartPosition = () =>
+        getComputedStyle(section).getPropertyValue('--clock-start-position').trim()
+
       // Reloj
       gsap.set(image, {
         WebkitMaskSize: '50vw auto',
         maskSize: '50vw auto',
 
-        WebkitMaskPosition: '50% 58%',
-        maskPosition: '50% 58%',
+        WebkitMaskPosition: clockStartPosition,
+        maskPosition: clockStartPosition,
       })
 
       // Merch oculto mientras ocurre el reloj
@@ -180,7 +185,7 @@ export function Transition() {
           scrub: 0.8,
           pin: true,
 
-          anticipatePin: 1,
+          anticipatePin: window.matchMedia('(max-width: 768px)').matches ? 0 : 1,
           invalidateOnRefresh: true,
         },
       })
@@ -191,8 +196,11 @@ export function Transition() {
        * ==========================================
        */
 
-      // Centrar
-      timeline.to(image, {
+      // Keep the same duration; on mobile this is a hold, not a sudden recenter.
+      timeline.fromTo(image, {
+        WebkitMaskPosition: clockStartPosition,
+        maskPosition: clockStartPosition,
+      }, {
         WebkitMaskPosition: '50% 50%',
         maskPosition: '50% 50%',
 
@@ -392,6 +400,33 @@ export function Transition() {
         ease: 'power2.out',
       }, CLOCK_CENTER + CLOCK_HOLD + CLOCK_GROW)
 
+      // Mobile browser chrome changes dvh (including the hero above us), but
+      // ScrollTrigger ignores small mobile resizes by default. Remeasure this
+      // trigger before entry so its cached start matches the current layout.
+      // Never refresh an active carousel just because the browser bars move.
+      let viewportFrame = 0
+      const syncEntryToViewport = () => {
+        cancelAnimationFrame(viewportFrame)
+        viewportFrame = requestAnimationFrame(() => {
+          const trigger = timeline.scrollTrigger
+          if (
+            window.matchMedia('(max-width: 768px)').matches &&
+            (!window.visualViewport || window.visualViewport.scale === 1) &&
+            trigger && !trigger.isActive && trigger.progress === 0
+          ) {
+            trigger.refresh()
+          }
+        })
+      }
+      window.addEventListener('resize', syncEntryToViewport)
+      window.visualViewport?.addEventListener('resize', syncEntryToViewport)
+
+      return () => {
+        cancelAnimationFrame(viewportFrame)
+        window.removeEventListener('resize', syncEntryToViewport)
+        window.visualViewport?.removeEventListener('resize', syncEntryToViewport)
+      }
+
     },
 
     {
@@ -424,8 +459,8 @@ export function Transition() {
             WebkitMaskRepeat: 'no-repeat',
             maskRepeat: 'no-repeat',
 
-            WebkitMaskPosition: '50% 58%',
-            maskPosition: '50% 58%',
+            WebkitMaskPosition: 'var(--clock-start-position)',
+            maskPosition: 'var(--clock-start-position)',
 
             maskMode: 'alpha',
           }}

@@ -4,7 +4,10 @@
   color: var(--color-cream);
 }
 
-.site-footer__inner { width: min(100%, 1320px); margin-inline: auto; }
+.site-footer__inner {
+  width: min(100%, 1320px);
+  margin-inline: auto;
+}
 
 .site-footer__top {
   display: flex;
@@ -15,8 +18,17 @@
   border-top: 1px solid rgb(226 224 210 / 22%);
 }
 
-.site-footer__location { font-size: 20px; line-height: 1.3; }
-.site-footer__socials { display: flex; align-items: center; gap: 12px; }
+.site-footer__location {
+  font-size: 20px;
+  line-height: 1.3;
+}
+
+.site-footer__socials {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
 .site-footer__socials a,
 .site-footer__socials button {
   display: grid;
@@ -29,8 +41,16 @@
   background: transparent;
   color: inherit;
 }
-.site-footer__socials svg { width: 27px; height: 27px; }
-.site-footer__socials button:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.site-footer__socials svg {
+  width: 27px;
+  height: 27px;
+}
+
+.site-footer__socials button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
 
 .site-footer__wordmark {
   display: block;
@@ -43,6 +63,7 @@
   line-height: 1;
   letter-spacing: -0.065em;
   text-align: center;
+  color: #0f3630;
 }
 
 .site-footer__wordmark-text {
@@ -68,14 +89,33 @@
   color: var(--color-beige);
 }
 
-.site-footer a { transition: color 180ms ease; }
-.site-footer a:hover { color: var(--color-orange); }
-.site-footer a:focus-visible { outline: 2px solid var(--color-cream); outline-offset: 5px; }
+.site-footer a {
+  transition: color 180ms ease;
+}
+
+.site-footer a:hover {
+  color: var(--color-orange);
+}
+
+.site-footer a:focus-visible {
+  outline: 2px solid var(--color-cream);
+  outline-offset: 5px;
+}
 
 @media (max-width: 639px) {
-  .site-footer__top { gap: 12px; }
-  .site-footer__location { max-width: 150px; font-size: 18px; }
-  .site-footer__socials { gap: 6px; }
+  .site-footer__top {
+    gap: 12px;
+  }
+
+  .site-footer__location {
+    max-width: 150px;
+    font-size: 18px;
+  }
+
+  .site-footer__socials {
+    gap: 6px;
+  }
+
   .site-footer__wordmark {
     padding-block: 32px 24px;
     letter-spacing: -0.065em;

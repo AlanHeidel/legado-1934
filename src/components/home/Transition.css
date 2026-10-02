@@ -1,4 +1,5 @@
 .reveal {
+  --clock-start-position: 50% 58%;
   position: relative;
 
   width: 100%;
@@ -354,6 +355,7 @@
 /* Reserve space for the persistent product details on narrow screens. */
 @media (max-width: 768px) {
   .reveal {
+    --clock-start-position: 50% 50%;
     /* Override the pixel height/max-height set by GSAP's pin as browser bars move. */
     height: 100dvh !important;
     max-height: 100dvh !important;

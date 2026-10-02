@@ -113,13 +113,13 @@
 
 @media (max-width: 767px) {
   .hero {
-    height: 115dvh;
+    height: 110dvh;
   }
 
   .hero__content {
     min-height: 0;
     margin-bottom: 0;
-    transform: translateY(-15%);
+    transform: translateY(-5%);
     padding: max(40px, 8dvh) 20px;
     gap: 28px;
   }
