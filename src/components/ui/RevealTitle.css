@@ -1,0 +1,8 @@
+.reveal-title__word {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.reveal-title__letter {
+  display: inline-block;
+}

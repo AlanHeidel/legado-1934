@@ -1,3 +1,4 @@
+import { RevealTitle } from '../ui/RevealTitle'
 import { useRef } from 'react'
 import { PiArrowBendLeftUpThin } from 'react-icons/pi'
 import aboutImage from '../../assets/about.webp'
@@ -441,12 +442,9 @@ export function About() {
             <span className="about__scribble about__scribble--friends">Más que fútbol</span>
           </div>
 
-          <h2
-            className="about__title"
-            id="about-title"
-          >
+          <RevealTitle className="about__title" id="about-title">
             Sobre <span className="about__pencil">nosotros</span>
-          </h2>
+          </RevealTitle>
 
           <div className="about__layout">
 

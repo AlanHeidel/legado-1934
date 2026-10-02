@@ -57,7 +57,8 @@
 .visual-break__pencil::after {
   inset: auto -3% -10px;
   height: 9px;
-  transform: rotate(-1deg);
+  transform: rotate(-1deg) scaleX(var(--title-underline, 1));
+  transform-origin: left center;
 }
 
 .visual-break__pencil::before {
@@ -65,7 +66,8 @@
   bottom: -17px;
   width: 57%;
   height: 6px;
-  transform: rotate(1deg);
+  transform: rotate(1deg) scaleX(var(--title-underline-tail, 1));
+  transform-origin: left center;
   opacity: 0.65;
 }
 

@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { PiArrowUpRight } from 'react-icons/pi'
 import { gsap } from '../../lib/gsap'
+import { useScrollEntrance } from '../../hooks/useScrollEntrance'
 import { RESERVATION_PHONE } from '../../lib/site'
 import jugar from '../../assets/jugar.webp'
 import cumple from '../../assets/cumple.webp'
@@ -29,7 +30,16 @@ const experiences = [
   },
 ]
 
+function experiencesEntrance(element: HTMLDivElement) {
+  return gsap.timeline({ paused: true }).fromTo(
+    element.querySelectorAll('.experiences__copy, .experiences__navigation'),
+    { opacity: 0, y: 16 },
+    { opacity: 1, y: 0, duration: 0.7, stagger: 0.12, ease: 'power2.out', clearProps: 'opacity,transform' },
+  )
+}
+
 export function Experiences() {
+  const entranceRef = useScrollEntrance<HTMLDivElement>(experiencesEntrance)
   const [selection, setSelection] = useState({ index: 0, version: 0 })
   const [focused, setFocused] = useState(false)
   const sectionRef = useRef<HTMLElement>(null)
@@ -100,7 +110,7 @@ export function Experiences() {
             src={experience.image} alt="" loading="lazy" decoding="async" />
         ))}
       </div>
-      <div className="experiences__layout">
+      <div ref={entranceRef} className="experiences__layout">
         <div className="experiences__copy" id="experience-content"
           aria-live={focused ? 'polite' : 'off'} aria-atomic="true">
           <div key={selection.index} className="experiences__copy-inner">

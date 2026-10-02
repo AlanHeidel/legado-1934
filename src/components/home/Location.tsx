@@ -1,3 +1,4 @@
+import { RevealTitle } from '../ui/RevealTitle'
 import type { ReactNode } from 'react'
 import { FaExternalLinkAlt, FaCar, FaRegClock, FaMapMarkerAlt, FaWhatsapp } from 'react-icons/fa'
 import { RESERVATION_PHONE } from '../../lib/site'
@@ -40,9 +41,9 @@ export function Location() {
   return (
     <section className="location" id="ubicacion" aria-labelledby="location-title" tabIndex={-1}>
       <div className="location__inner">
-        <h2 className="location__title" id="location-title">
+        <RevealTitle className="location__title" id="location-title">
           Dónde <span className="location__pencil">estamos</span>
-        </h2>
+        </RevealTitle>
         <div className="location__layout">
           <div className="location__map-frame">
             {embedUrl ? (
