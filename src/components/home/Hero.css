@@ -32,6 +32,10 @@
 
 .hero__overlay {
   z-index: var(--layer-overlay);
+  /* Default is fully visible, including when reduced motion skips the intro. */
+  --overlay-reveal: 120%;
+  -webkit-mask-image: linear-gradient(to top right, #000 calc(var(--overlay-reveal) - 20%), transparent var(--overlay-reveal));
+  mask-image: linear-gradient(to top right, #000 calc(var(--overlay-reveal) - 20%), transparent var(--overlay-reveal));
 }
 
 .hero__content {

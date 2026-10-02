@@ -26,10 +26,13 @@ export function Hero() {
           invalidateOnRefresh: true,
         },
       })
-      // One entrance: establish the pitch, reveal the club, then the action.
+      // Simple entrance on load, independent of the scroll animation.
       gsap.timeline({ defaults: { ease: 'power3.out' } })
         .from('.hero__background', { scale: 1.06, duration: 1.8, clearProps: 'transform' }, 0)
-        .from('.hero__identity', { y: 26, scale: 0.96, duration: 1.15, clearProps: 'transform' }, 0.12)
+        .fromTo('.hero__overlay',
+          { '--overlay-reveal': '0%' },
+          { '--overlay-reveal': '120%', duration: 1.8, ease: 'power1.inOut', clearProps: '--overlay-reveal' }, 0)
+        .from('.hero__identity', { scale: 0.9, duration: 1.15, clearProps: 'transform' }, 0.12)
         .from('.hero__action', { y: 14, opacity: 0, duration: 0.7, clearProps: 'transform,opacity' }, 0.55)
     })
     return () => media.revert()

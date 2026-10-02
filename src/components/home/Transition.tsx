@@ -2,12 +2,12 @@ import { useRef } from 'react'
 import { PiArrowUpRight } from 'react-icons/pi'
 import { RESERVATION_PHONE } from '../../lib/site'
 
-import backgroundImage from '../../assets/background-tshirts.png'
+import backgroundImage from '../../assets/background-tshirts.webp'
 import transitionImage from '../../assets/reloj-only.svg?url'
 
-import remera1 from '../../assets/remera1.png'
-import remera2 from '../../assets/remera2.png'
-import remera3 from '../../assets/remera3.png'
+import remera1 from '../../assets/remera1.webp'
+import remera2 from '../../assets/remera2.webp'
+import remera3 from '../../assets/remera3.webp'
 
 import { gsap, useGSAP } from '../../lib/gsap'
 

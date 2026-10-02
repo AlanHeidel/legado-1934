@@ -2,9 +2,9 @@ import { useEffect, useRef, useState } from 'react'
 import { PiArrowUpRight } from 'react-icons/pi'
 import { gsap } from '../../lib/gsap'
 import { RESERVATION_PHONE } from '../../lib/site'
-import jugar from '../../assets/jugar.png'
-import cumple from '../../assets/cumple.png'
-import torneo from '../../assets/torneo.png'
+import jugar from '../../assets/jugar.webp'
+import cumple from '../../assets/cumple.webp'
+import torneo from '../../assets/torneo.webp'
 import './Experiences.css'
 
 const SLIDE_SECONDS = 10

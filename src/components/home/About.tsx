@@ -1,8 +1,8 @@
 import { useRef } from 'react'
 import { PiArrowBendLeftUpThin } from 'react-icons/pi'
-import aboutImage from '../../assets/about.png'
-import aboutImage2 from '../../assets/about2.png'
-import aboutImage3 from '../../assets/about3.png'
+import aboutImage from '../../assets/about.webp'
+import aboutImage2 from '../../assets/about2.webp'
+import aboutImage3 from '../../assets/about3.webp'
 import { gsap, ScrollTrigger, useGSAP } from '../../lib/gsap'
 import './About.css'
 
